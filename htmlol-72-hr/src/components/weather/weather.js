@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './weather.css'
+import './weather.css';
 import moment from 'moment';
 // import { useEffect, useState } from "react";
 // import GeoLocate from "../../geoLocate/GeoLocate";
@@ -72,7 +72,7 @@ state = {
                     <div className = "weather-box">
                         <div className = "weather-item">{city}</div>
                         <div className = "weather-item">{temperatureC} &deg;C <span className="slash">/</span> {temperatureF} &deg;F</div>
-                        <div className="weather-icon" src={`http://openweathermap.org/img/w/${icon}.png`} alt="weather icon"></div>
+                        <img className="weather-icon" src={`http://openweathermap.org/img/w/${icon}.png`} alt="weather icon"></img>
                         <div className="weather-item">
                             <span>Sunrise:{sunrise}</span>
                             </div>
