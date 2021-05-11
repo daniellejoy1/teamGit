@@ -68,7 +68,7 @@ state = {
             const {city, temperatureC, temperatureF, icon, sunrise, sunset} = this.state;
             if (city) {
                 return(
-                <div className = "App">
+                <div className = "main">
                     <div className = "weather-box">
                         <div className = "weather-item">{city}</div>
                         <div className = "weather-item">{temperatureC} &deg;C <span className="slash">/</span> {temperatureF} &deg;F</div>
