@@ -10,7 +10,7 @@ import {
 import Home from './Home'
 import Nasa from '../components/nasa/nasa';
 import Weather from '../components/weather/weather';
-import YelpFood from '../components/yelp/Yelp';
+import YelpFood from '../components/yelp/yelp';
 // import GeoLocate from './geoLocate/GeoLocate';
 
 
