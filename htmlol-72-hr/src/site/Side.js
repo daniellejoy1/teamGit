@@ -8,9 +8,10 @@ import {
 //Once code has been merged and the 'Nasa' and 'Weather' files have been added, we should be able to uncomment those imports and routes below for them to work. 
 
 import Home from './Home'
-// import Nasa from '../components/nasa/nasa';
-// import Weather from '../components/weather/weather';
+import Nasa from '../components/nasa/nasa';
+import Weather from '../components/weather/weather';
 import YelpFood from '../components/yelp/Yelp';
+// import GeoLocate from './geoLocate/GeoLocate';
 
 
 const Side = () => {
@@ -27,8 +28,8 @@ const Side = () => {
             <div className="sidebar-route">
                 <Switch>
                     <Route exact path="/"><Home /></Route>
-                    {/* <Route exact path="/nasa"><Nasa /></Route>
-                    <Route exact path="/weather"><Weather /></Route> */}
+                    <Route exact path="/nasa"><Nasa /></Route>
+                    <Route exact path="/weather"><Weather /></Route>
                     <Route exact path="/yelp"><YelpFood /></Route>
                 </Switch>
             </div>

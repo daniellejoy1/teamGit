@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './weather.css'
+// import './App.css';
 import moment from 'moment';
 // import { useEffect, useState } from "react";
 // import GeoLocate from "../../geoLocate/GeoLocate";
@@ -29,7 +29,9 @@ state = {
     }
 
       getWeather = async (latitude, longitude) => {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=8ab7e0368b9d6e44b1351df09d533663&units=metric`);
+        const response = await
+        fetch(`http://api.openweathermap.org/data/2.5/weather?
+      lat=${latitude}&lon=${longitude}&appid=8ab7e0368b9d6e44b1351df09d533663&mode=JSON&units=metric`);
         const data = await response.json();
         this.setState({
             lat: latitude,
@@ -41,7 +43,7 @@ state = {
             sunrise: moment.unix(data.sys.sunrise).format("hh:mm a"),
             sunset: moment.unix(data.sys.sunset).format("hh:mm a"),
         })
-        console.log('data is: ', data);  
+        console.log('data is: ', data);  //this is the good stuff
       
     };
 
@@ -71,7 +73,7 @@ state = {
                 <div className = "App">
                     <div className = "weather-box">
                         <div className = "weather-item">{city}</div>
-                        <div className = "weather-item">{temperatureC} &deg;C <span className="slash">/</span> {temperatureF} &deg;F</div>
+                        <div className = "weather-item">{temperatureC} &deg;C <span className="slash">/</span></div> {temperatureF} &deg;F</div>
                         <div className="weather-icon" src={`http://openweathermap.org/img/w/${icon}.png`} alt="weather icon"></div>
                         <div className="weather-item">
                             <span>Sunrise:{sunrise}</span>
@@ -79,7 +81,6 @@ state = {
                         <div className="weather-item">
                             <span>Sunset:{sunset}</span>
                         </div>
-                </div>
                 </div>
                 )
             }
@@ -91,72 +92,30 @@ state = {
             }
         }
 
-        export default Weather;
-
-// import React from 'react';
-// import { useEffect, useState } from "react";
-// import Swiper from 'swiper';
-
-// const API_KEY = '8ab7e0368b9d6e44b1351df09d533663';
-
-// const usePosition = () => {
-//     const [error, setError] = useState(null);
-//   const [position, setPosition] = useState();
-
-//   useEffect(() => {
-//     const geo = navigator.geolocation;
-//         if(!geo) {
-//             setError('Geolocation is not supported.');
-//             return;
-//         }
-
-//         const handleSuccess = position => {
-//             const { latitude, longitude } = position.coords;
-//             setPosition({
-//                 latitude,
-//                 longitude
-//             });
-//         };
-
-//         const handleError = error => {
-//             setError(error.message);
-//         };
-
-//         geo.getCurrentPosition(handleSuccess, handleError);
-
-//     }, []);
-
-//     return { position, error };
-// }
+        // export default Weather;
+      
 
 
-// function Weather() {
-//   const {position, error} = usePosition();
-//   const [weather, setWeather] = useState([]);
+//     const [data, setData] = useState(); 
+//     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=REACT_WEATHER_API_KEY`;
 
-//   useEffect(() => {
-//     if(position) {
-//       const URL = `https://api.openweathermap.org/data/2.5/onecall?lat=${position.latitude}&lon=${position.longitude}&exclude=current,minutely,daily&units=metric&lang=pl&appid=${API_KEY}`;
-
-//       const fetchData = async () => {
-//         const result = await fetch(URL)
-//           .then(res => res.json())
-//           .then(data => data);
-//         setWeather(result.hourly);  
-//       }
-//       fetchData();
-//     } else {
-//       console.log('no position');
+//     const initData = async() => {
+//         const response = await fetch(url, {
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             }
+//         });
+//         const json = await response.json()
+//         setData(json);
 //     }
-//   }, [position, error]);
-
-//   return (
-//       <div className="App">
-//         <div>
-//           <Swiper weather={weather}/>
+//     useEffect(() => {
+//         initData();
+//     })
+//     // console.log(data?.results.json)
+//     return (
+//         <div className = 'weather'>
+//             {data?.results.map()}
 //         </div>
-//       </div>
-//     )
+//         );
 // }
 
-// export default Weather;
