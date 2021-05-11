@@ -30,7 +30,6 @@ const NASA = () => {
     setLongitude(position.coords.longitude);
   };
 
-
   const fetchNASA = () => {
     let url = `${baseNASA_URL}?lon=${longitude}&lat=${latitude}&date=2018-01-01&dim=0.15&api_key=${api_key}`;
     // let url = "https://api.nasa.gov/planetary/earth/imagery?lon=-97.37&lat=32.91&date=2018-01-01&dim=0.15&api_key=vtMREx6SWfLJaDo3mHjInRqAjCfYLIAkR3jfQsBc"
@@ -49,7 +48,10 @@ const NASA = () => {
 
   return (
     <Col className="p-2" md="auto">
-      <img className="locImg" src={NASAData} alt="map of your area" />
+      <div className="nasaDiv">
+        <h3>Sattelite image of your location</h3>
+        <img className="locImg" src={NASAData} alt="map of your area" />
+      </div>
     </Col>
   );
 };
