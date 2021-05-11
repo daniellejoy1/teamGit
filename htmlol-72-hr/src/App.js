@@ -1,5 +1,6 @@
 import React from 'react';
 import GeoLocate from './geoLocate/GeoLocate';
+import NASA from "./components/nasa"
 import './App.css';
 
 
