@@ -4,12 +4,13 @@ import "./nasa.css";
 import placeholdImg from "./assets/map-icon-2.png";
 
 const baseNASA_URL = "https://api.nasa.gov/planetary/earth/imagery";
-const api_key = "vtMREx6SWfLJaDo3mHjInRqAjCfYLIAkR3jfQsBc";
+const api_key = "LoWmLJvmvd991k4liROXAUIfOwF6UGoIiArz2K0p";
 
 const NASA = () => {
   const [NASAData, setNASAData] = useState(placeholdImg);
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+  const [locationDataFound, setLocationDataFound] = useState(false);
   // const [geolocationAvailable, setGeolocationAvailable] = useState(true);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const NASA = () => {
 
   const geoLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(showPosition);
+      navigator.geolocation.getCurrentPosition(showPosition);
     } else {
       console.log("Geolocation is not supported by this browser.");
       // setGeolocationAvailable(false);
@@ -29,6 +30,17 @@ const NASA = () => {
     setLatitude(position.coords.latitude);
     setLongitude(position.coords.longitude);
   };
+
+  useEffect(() => {
+    if (latitude && longitude) {
+      console.log("Latitude:", latitude, "Longitude:", longitude);
+      setLocationDataFound(true);
+    }
+  }, [latitude, longitude]);
+
+  useEffect(() => {
+    fetchNASA();
+  });
 
   const fetchNASA = () => {
     let url = `${baseNASA_URL}?lon=${longitude}&lat=${latitude}&date=2018-01-01&dim=0.15&api_key=${api_key}`;
@@ -42,17 +54,27 @@ const NASA = () => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    fetchNASA();
-  });
+
+  const displayNASA = () => {
+    return (
+      <Col className="p-2" md="auto">
+        <div className="nasaDiv">
+          <h3>Sattelite image of your location</h3>
+          <img className="locImg" src={NASAData} alt="map of your area" />
+        </div>
+      </Col>
+    );
+  }
 
   return (
-    <Col className="p-2" md="auto">
-      <div className="nasaDiv">
-        <h3>Sattelite image of your location</h3>
-        <img className="locImg" src={NASAData} alt="map of your area" />
+    <div>
+      {/* {console.log(locationDataFound)} */}
+      {locationDataFound ? (
+        displayNASA()
+      ) : (
+        <h2>Geolocation is not supported by this browser.</h2>
+      )}
       </div>
-    </Col>
   );
 };
 
